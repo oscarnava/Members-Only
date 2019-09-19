@@ -13,6 +13,8 @@
     <% flash.each do |key, value| %>
       <%= raw "<div class='#{key}'>#{value}</div>"%>
     <% end %>
+    <%= link_to('logout', logout_path, method: :delete) if @current_user %>
+    <%= link_to 'login', login_path unless @current_user %>
     <%= yield %>
   </body>
 </html>

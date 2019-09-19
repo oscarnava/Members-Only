@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  before_action :current_user
+
   def new
     @session = nil
   end
@@ -17,6 +19,11 @@ class SessionsController < ApplicationController
     end
   end
 
+  def delete
+    self.current_user = nil
+    redirect_to :root
+  end
+
   private
 
   def current_user
@@ -25,11 +32,11 @@ class SessionsController < ApplicationController
     @current_user ||= User.find_by(id: cookies.signed[:user_id])
   end
 
-  def current_user= (user)
+  def current_user=(user)
     if user
       cookies.permanent.signed[:user_id] = user.id
       cookies.permanent[:remember_token] = user.remember_token
-      else
+    else
       cookies.delete :user_id
       cookies.delete :remember_token
     end
