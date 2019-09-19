@@ -9,13 +9,22 @@ class User < ApplicationRecord
   end
 
   def remember
-    self.remember_token = User.new_token
-    update_attribute(:remember_token, Digest::SHA1.hexdigest(remember_token))
+    @remember_token = User.new_token
+    update_attribute(:remember_token, Digest::SHA1.hexdigest(@remember_token))
   end
 
   private
 
   def create_token
-    self.remember_token = Digest::SHA1.hexdigest(new_token)
+    @remember_token = Digest::SHA1.hexdigest(new_token)
   end
+
+  def inspect
+    "User: #{self.name}"
+  end
+
+  def to_s
+    inspect
+  end
+
 end
