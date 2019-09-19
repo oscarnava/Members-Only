@@ -4,18 +4,25 @@ class SessionsController < ApplicationController
   end
 
   def create
-
     @user = User.find_by(email: params[:session][:email])
 
     if @user&.authenticate(params[:session][:password])
-      new_token = User.new_token
-      cookies.permanent[:remember_token] = new_token
-      session[:remember_token] = @user.remember_token
-      flash[:notice] = 'Eureka!'
+      @user.remember
+      cookies.permanent.signed[:user_id] = @user.id
+      cookies.permanent[:remember_token] = @user.remember_token
+      flash[:success] = 'Eureka!'
       redirect_to :root
     else
-      flash.now[:notice] = 'Wrong password or username!'
+      flash.now[:failure] = 'Wrong password or username!'
       render :create
     end
+  end
+
+  private
+
+  def current_user
+    return unless cookies.signed[:user_id]
+
+    @current_user ||= User.find_by(id: cookies.signed[:user_id])
   end
 end
