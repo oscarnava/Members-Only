@@ -1,24 +1,4 @@
-# README
+# Members Only!
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Authors: [Mauricio Robayo](https://github.com/MauricioRobayo) & [Oscar Nava](https://github.com/oscarnava/)
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
