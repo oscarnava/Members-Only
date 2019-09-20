@@ -3,7 +3,7 @@
 class ApplicationController < ActionController::Base
   before_action :current_user
 
-  def is_logged_in?
+  def logged_in?
     current_user
   end
 

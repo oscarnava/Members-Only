@@ -20,16 +20,16 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = is_logged_in? ? Post.includes(:user).order('users.name') : Post.all
+    @posts = logged_in? ? Post.includes(:user).order('users.name') : Post.all
   end
 
   private
 
   def block_unlogged
-    unless is_logged_in?
-      flash[:invalid] = 'You aren´t authorized to create posts!'
-      redirect_to :root
-    end
+    return if logged_in?
+
+    flash[:invalid] = 'You aren´t authorized to create posts!'
+    redirect_to :root
   end
 
   def post_params
