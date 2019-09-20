@@ -1,5 +1,4 @@
 class PostsController < ApplicationController
-  before_action :is_logged_in?
   before_action :block_unlogged, except: [:index]
 
   def new
@@ -7,8 +6,8 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params)
-    @post.user = current_user
+    @post = current_user.posts.new post_params
+
     if @post.save
       flash[:success] = 'Post succesfully saved!'
       redirect_to posts_path
@@ -25,12 +24,14 @@ class PostsController < ApplicationController
   private
 
   def block_unlogged
-    redirect_to :root unless is_logged_in?
+    unless is_logged_in?
+      flash[:invalid] = 'You aren´t authorized to create posts!'
+      redirect_to :root
+    end
   end
 
   def post_params
     params.require(:post).permit :content
-    # (params.require(:post).permit :content) << [:user, current_user]
   end
 
 end
