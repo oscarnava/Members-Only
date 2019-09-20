@@ -1,2 +1,9 @@
-<h1>Posts#index</h1>
-<p>Find me in app/views/posts/index.html.erb</p>
+<h1>Previous posts:</h1>
+<table border="1">
+<% @posts.each do|p| %>
+<tr>
+<%= content_tag :td, p.content %>
+<%= content_tag :td, p.user.name if @current_user %>
+</tr>
+<% end %>
+</table>

@@ -10,11 +10,13 @@
   </head>
 
   <body>
+    <h1>Logged as <%= @current_user&.name || 'None' %></h1>
     <% flash.each do |key, value| %>
       <%= raw "<div class='#{key}'>#{value}</div>"%>
     <% end %>
     <%= link_to('logout', logout_path, method: :delete) if @current_user %>
     <%= link_to 'login', login_path unless @current_user %>
+    <%= link_to 'Create post', new_post_path if @current_user %>
     <%= yield %>
   </body>
 </html>

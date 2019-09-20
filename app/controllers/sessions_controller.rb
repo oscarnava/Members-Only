@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
     if current_user&.authenticate(params[:session][:password])
       current_user.remember
       cookies.permanent[:remember_token] = current_user.remember_token
-      flash[:success] = 'Eureka!'
+      flash[:success] = 'You are logged in!'
       redirect_to :root
     else
       flash.now[:failure] = 'Wrong password or username!'
