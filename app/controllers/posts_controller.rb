@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PostsController < ApplicationController
   before_action :block_unlogged, except: [:index]
 
@@ -33,5 +35,4 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit :content
   end
-
 end

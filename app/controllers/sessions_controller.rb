@@ -1,5 +1,6 @@
-class SessionsController < ApplicationController
+# frozen_string_literal: true
 
+class SessionsController < ApplicationController
   def new
     @session = nil
   end
@@ -22,5 +23,4 @@ class SessionsController < ApplicationController
     self.current_user = nil
     redirect_to :root
   end
-
 end

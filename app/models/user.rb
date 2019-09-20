@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   attr_accessor :remember_token
 
@@ -27,5 +29,4 @@ class User < ApplicationRecord
   # def to_s
   #   inspect
   # end
-
 end

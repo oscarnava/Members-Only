@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
   before_action :current_user
 
@@ -21,5 +23,4 @@ class ApplicationController < ActionController::Base
     end
     @current_user = user || nil
   end
-
 end
