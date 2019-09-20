@@ -17,7 +17,8 @@ posts = [
 
 "Ut posuere erat nibh, sed suscipit turpis efficitur quis. Aliquam dui mi, lacinia eu odio eu, tincidunt rhoncus nunc. Ut sit amet dolor sit amet nulla molestie sodales. Nullam vitae ultrices quam, ut facilisis purus. Aenean eu nunc ut lectus vulputate aliquet. Donec vel ullamcorper ipsum. Proin non dictum elit."]
 
-5.times do |n|
+5.times do |m|
+  n = 5 - m
   usr = User.create(name: "foobar0#{n}",
               email: "foo@bar0#{n}.com",
               password: "foobar0#{n}",

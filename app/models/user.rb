@@ -20,12 +20,12 @@ class User < ApplicationRecord
     @remember_token = Digest::SHA1.hexdigest(User.new_token)
   end
 
-  def inspect
-    "User: #{self.name}"
-  end
+  # def inspect
+  #   "User: #{self.name}"
+  # end
 
-  def to_s
-    inspect
-  end
+  # def to_s
+  #   inspect
+  # end
 
 end

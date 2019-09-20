@@ -18,7 +18,7 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    @posts = is_logged_in? ? Post.includes(:user).order('users.name') : Post.all
   end
 
   private
