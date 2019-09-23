@@ -14,8 +14,14 @@
     <% flash.each do |key, value| %>
       <%= raw "<div class='#{key}'>#{value}</div>"%>
     <% end %>
+    <% @user&.errors && @user.errors.full_messages.each do |error_msg| %>
+      <ul>
+        <li><%= error_msg %></li>
+      </ul>
+    <% end %>
     <%= link_to('logout', logout_path, method: :delete) if @current_user %>
-    <%= link_to 'login', login_path unless @current_user %>
+    <%= link_to 'Sign up', new_user_path unless @current_user %>
+    <%= link_to 'Login', login_path unless @current_user %>
     <%= link_to 'Create post', new_post_path if @current_user %>
     <%= yield %>
   </body>

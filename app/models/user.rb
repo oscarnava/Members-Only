@@ -7,6 +7,10 @@ class User < ApplicationRecord
   has_secure_password
   has_many :posts
 
+  validates :name, presence: true, length: { in: 4..30 }
+  validates :email, presence: true, format: /\w+@\w+\.{1}[a-zA-Z]{2,}/
+  validates :password, length: { in: 4..30 }
+
   def self.new_token
     SecureRandom.urlsafe_base64.to_s
   end
@@ -22,11 +26,4 @@ class User < ApplicationRecord
     @remember_token = Digest::SHA1.hexdigest(User.new_token)
   end
 
-  # def inspect
-  #   "User: #{self.name}"
-  # end
-
-  # def to_s
-  #   inspect
-  # end
 end
