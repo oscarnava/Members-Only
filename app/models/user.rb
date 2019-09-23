@@ -25,5 +25,4 @@ class User < ApplicationRecord
   def create_token
     @remember_token = Digest::SHA1.hexdigest(User.new_token)
   end
-
 end
