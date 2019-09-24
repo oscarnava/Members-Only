@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_many :posts
 
   validates :name, presence: true, length: { in: 4..30 }
-  validates :email, presence: true, format: /\w+@\w+\.{1}[a-zA-Z]{2,}/
+  validates :email, presence: true, uniqueness: true, format: /\w+@\w+\.{1}[a-zA-Z]{2,}/
   validates :password, length: { in: 4..30 }
 
   def self.new_token
