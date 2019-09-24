@@ -1,0 +1,8 @@
+<% usr_id = '' %>
+<% @posts.each do|post| %>
+  <% if @current_user && usr_id != post.user.name %>
+    <%= content_tag :div, post.user.name, class: 'author-head' %>
+    <% usr_id = post.user.name %>
+  <% end %>
+  <%= post_to_html post %>
+<% end %>
